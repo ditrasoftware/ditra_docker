@@ -1,6 +1,8 @@
 export APPS_JSON_BASE64=$(base64 -w 0 ./apps.json)
 
-docker build \
+echo $APPS_JSON_BASE64 | base64 -d
+
+docker build --no-cache --progress plain \
   --build-arg=FRAPPE_PATH=https://github.com/frappe/frappe \
   --build-arg=FRAPPE_BRANCH=version-14 \
   --build-arg=PYTHON_VERSION=3.10.5 \
